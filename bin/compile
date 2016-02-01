@@ -9,6 +9,6 @@ cd $1
 tar zxf app.tar.gz
 rm app.tar.gz
 
+rm -rf app/.git
 (shopt -s dotglob; mv -- app/* .)
-
 rmdir app
