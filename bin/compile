@@ -5,10 +5,18 @@ set -o pipefail   # dont ignore exit codes when piping output
 # set -x          # enable debugging
 
 cd $1
+mkdir -p app
+mv app.tar.gz app
 
+cd app
 tar zxf app.tar.gz
-rm app.tar.gz
 
-rm -rf app/.git
+if [ -d "app" ]; then
+  (shopt -s dotglob; mv -- app/* .)
+fi
+
+rm -rf app.tar.gz .git
+
+cd ..
 (shopt -s dotglob; mv -- app/* .)
 rmdir app
