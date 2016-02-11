@@ -15,7 +15,11 @@ if [ -d "app" ]; then
   (shopt -s dotglob; mv -- app/* .)
 fi
 
-rm -rf app.tar.gz .git
+rm -rf app.tar.gz
+
+if [ -d "../.git" ]; then
+  rm -rf .git
+fi
 
 cd ..
 (shopt -s dotglob; mv -- app/* .)
