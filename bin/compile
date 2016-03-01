@@ -17,8 +17,8 @@ fi
 
 rm -rf app.tar.gz
 
-if [ -d "../.git" ]; then
-  rm -rf .git
+if [ -d ".git" ]; then
+  rm -rf ../.git
 fi
 
 cd ..
