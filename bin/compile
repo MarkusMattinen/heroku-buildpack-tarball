@@ -6,21 +6,11 @@ set -o pipefail   # dont ignore exit codes when piping output
 
 cd $1
 mkdir -p app
-mv app.tar.gz app
+tar zxf app.tar.gz -C app
 
-cd app
-tar zxf app.tar.gz
-
-if [ -d "app" ]; then
-  (shopt -s dotglob; mv -- app/* .)
+if [ -d "app/.git" -a -d ".git" ]; then
+  rm -rf .git
 fi
 
-rm -rf app.tar.gz
-
-if [ -d ".git" ]; then
-  rm -rf ../.git
-fi
-
-cd ..
-(shopt -s dotglob; mv -- app/* .)
-rmdir app
+(shopt -s dotglob; cp -r app/* .)
+rm -rf app app.tar.gz
